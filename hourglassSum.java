@@ -12,27 +12,23 @@ class Result {
      * The function accepts 2D_INTEGER_ARRAY arr as parameter.
      */
 
-    public static int currentSum(List<Integer> nums) {
-        Integer sum = 0;
-        for (Integer num : nums)
-            sum += num;
-        return sum;
-    }
-
 
     public static int hourglassSum(List<List<Integer>> arr) {
         // Write your code here
-        int sum = 0;
-        for (int i = 0; i < 3 ; i++) {
-            List <Integer> tempList = new ArrayList<>();
-            for (int j = 0; j < 3; j++) {
-                tempList.add(j);
-                tempList.add(arr.get(i+2).get(j));
-                if (j == 1)
-                   tempList.add(arr.get(i+1).get(j));
+        int greatestHourglassSum = 0;
+        for (int i = 0; i < 4; i++) {
+            List <Integer> currentTopRow = arr.get(i);
+            List <Integer> secondRow = arr.get(i+1);
+            List <Integer> thirdRow = arr.get(i+2);
+            for (int j = 0; j < 4; j++) {
+                int currentHourglassSum = 0;
+                currentHourglassSum += currentTopRow.get(j) + currentTopRow.get(j+1) + currentTopRow.get(j+2);
+                currentHourglassSum += secondRow.get(j+1);
+                currentHourglassSum += thirdRow.get(j) + thirdRow.get(j+1) + thirdRow.get(j+2);
+                if (currentHourglassSum > greatestHourglassSum)
+                    greatestHourglassSum = currentHourglassSum;
             }
-            sum += currentSum(tempList);
         }
-        return sum;
+        return greatestHourglassSum;
     }
 }
