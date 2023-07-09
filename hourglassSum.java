@@ -16,6 +16,9 @@ class Result {
     public static int hourglassSum(List<List<Integer>> arr) {
         // Write your code here
         int greatestHourglassSum = 0;
+        greatestHourglassSum = arr.get(0).get(0) + arr.get(0).get(1) + arr.get(0).get(2);
+        greatestHourglassSum += arr.get(1).get(1);
+        greatestHourglassSum += arr.get(2).get(0) + arr.get(2).get(1) + arr.get(2).get(2);
         for (int i = 0; i < 4; i++) {
             List <Integer> currentTopRow = arr.get(i);
             List <Integer> secondRow = arr.get(i+1);
